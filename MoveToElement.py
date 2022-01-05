@@ -1,31 +1,29 @@
-import time
-
 from WebDriver_CrossBrowser import driver
 from selenium.webdriver.common.by import By
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
-from pyshadow.main import Shadow
+from selenium.webdriver import ActionChains
 
-driver.implicitly_wait(5)
-driver.get("https://www.daraz.com.bd/")
+# driver.get("http://automationpractice.com/index.php")
+driver.get("https://phptravels.com/")
 driver.maximize_window()
-time.sleep(2)
+print("Title : "+driver.title)
 
-'''XPATH'''
-# notInterested = driver.find_element(By.CSS_SELECTOR, 'airship-btn airship-btn-deny')
-ElectronicDevices = driver.find_element(By.XPATH, "//span[contains(text(),'Electronic Devices')]")
-cameras = driver.find_element(By.XPATH, "//*[contains(text(),'Cameras')]")
-dslr = driver.find_element(By.XPATH, "//*[contains(text(),'DSLR')]")
-
-shadow = Shadow(driver)
-notInterested = shadow.find_element(By.XPATH, "button[class='airship-btn airship-btn-deny']")
-notInterested.click()
-
-'''ACTION_CHAIN'''
 act_chains = ActionChains(driver)
 
-act_chains.move_to_element(ElectronicDevices).perform()
-act_chains.move_to_element(cameras).perform()
-dslr.click()
-time.sleep(2)
-driver.quit()
+# dresses = driver.find_element(By.XPATH, "//a[@title='Women']")
+# summer_dress = driver.find_element(By.XPATH, "//a[@title='Summer Dresses']")
+# act_chains.move_to_element(dresses).move_to_element(summer_dress).click().perform()
+
+Features = driver.find_element(By.XPATH, "//span[contains(text(),'Features')]")
+Flights_Module = driver.find_element(By.XPATH, "//a[contains(text(),'Flights Module')]")
+
+'''Process_1'''
+# act_chains.move_to_element(Features).move_to_element(Flights_Module).click().perform()
+'''Process_2'''
+act_chains.move_to_element(Features).perform()
+act_chains.move_to_element(Flights_Module).click().perform()
+
+driver.implicitly_wait(10)
+driver.close()
+
+
